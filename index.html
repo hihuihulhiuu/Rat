@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS GAMING</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080812;
+    color: white;
+}
+
+header {
+    height: 80px;
+    padding: 0 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #101020;
+    border-bottom: 1px solid #29294b;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+    color: #a855f7;
+    letter-spacing: 2px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 28px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #a855f7;
+}
+
+.hero {
+    min-height: 580px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    background:
+    radial-gradient(ellipse at center, #32205c 0%, #111128 45%, #080812 80%);
+}
+
+.hero h1 {
+    font-size: clamp(42px, 8vw, 75px);
+    text-transform: uppercase;
+    text-shadow: 0 0 25px #9333ea;
+}
+
+.hero h1 span {
+    color: #a855f7;
+}
+
+.hero p {
+    color: #bbb;
+    margin: 20px 0 35px;
+    font-size: 18px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 35px;
+    background: #9333ea;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+    box-shadow: 0 0 20px #9333ea66;
+}
+
+.btn:hover {
+    transform: scale(1.08);
+    background: #a855f7;
+    box-shadow: 0 0 30px #a855f7;
+}
+
+section {
+    padding: 80px 8%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 45px;
+}
+
+.section-title span {
+    color: #a855f7;
+}
+
+.games {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.game-card {
+    background: #151527;
+    border: 1px solid #30304d;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    border-color: #a855f7;
+    box-shadow: 0 0 25px #9333ea55;
+}
+
+.game-image {
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+    background: linear-gradient(135deg, #38205c, #15152e);
+}
+
+.game-card h3 {
+    padding: 18px 18px 8px;
+}
+
+.game-card p {
+    color: #aaa;
+    padding: 0 18px 20px;
+}
+
+.community {
+    text-align: center;
+    background: #111124;
+    border-top: 1px solid #29294b;
+    border-bottom: 1px solid #29294b;
+}
+
+.community p {
+    color: #aaa;
+    margin: 20px auto 30px;
+    max-width: 550px;
+    line-height: 1.7;
+}
+
+footer {
+    padding: 30px;
+    text-align: center;
+    color: #777;
+    background: #080812;
+}
+
+@media(max-width: 650px) {
+    header {
+        height: auto;
+        padding: 20px;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    nav a {
+        margin: 0 7px;
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">NEXUS GAMING</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#games">Games</a>
+        <a href="#community">Community</a>
+    </nav>
+</header>
+
+<div class="hero" id="home">
+    <h1>ENTER THE <span>GAME</span></h1>
+    <p>Deine Welt. Deine Spiele. Dein Gaming-Erlebnis.</p>
+    <a href="#games" class="btn">GAMES ENTDECKEN</a>
+</div>
+
+<section id="games">
+    <h2 class="section-title">UNSERE <span>GAMES</span></h2>
+
+    <div class="games">
+
+        <div class="game-card">
+            <div class="game-image">🎯</div>
+            <h3>FPS GAMES</h3>
+            <p>Action, Strategie und spannende Matches.</p>
+        </div>
+
+        <div class="game-card">
+            <div class="game-image">⚔️</div>
+            <h3>ADVENTURE</h3>
+            <p>Entdecke neue Welten und Abenteuer.</p>
+        </div>
+
+        <div class="game-card">
+            <div class="game-image">🏎️</div>
+            <h3>RACING</h3>
+            <p>Geschwindigkeit und Adrenalin pur.</p>
+        </div>
+
+        <div class="game-card">
+            <div class="game-image">👾</div>
+            <h3>INDIE GAMES</h3>
+            <p>Entdecke kreative und einzigartige Spiele.</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="community" id="community">
+    <h2 class="section-title">JOIN THE <span>COMMUNITY</span></h2>
+
+    <p>
+        Werde Teil unserer Gaming-Welt!
+        Tausche dich mit anderen Gamern aus,
+        entdecke neue Spiele und erlebe Gaming gemeinsam.
+    </p>
+
+    <a href="https://discord.com/" target="_blank"
+       rel="noopener noreferrer" class="btn">
+       DISCORD BEITRETEN
+    </a>
+</section>
+
+<footer>
+    © 2026 NEXUS GAMING – All Rights Reserved.
+</footer>
+
+</body>
+</html>
