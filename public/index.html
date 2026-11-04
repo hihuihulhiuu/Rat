@@ -1,0 +1,117 @@
+<!-- public/index.html -->
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Konto — Anmeldung</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<main class="card" id="loginView">
+  <div class="brand">
+    <div class="mark">N</div>
+    <div class="brand-name">Nordvale</div>
+  </div>
+  <h1>Bei deinem Konto anmelden</h1>
+  <p class="sub">Zugriff auf dein Dashboard und deine Projekte.</p>
+
+  <form id="loginForm" novalidate>
+    <div class="field">
+      <label for="email">E-Mail</label>
+      <input id="email" name="email" type="email" autocomplete="username"
+             placeholder="name@firma.de" required>
+    </div>
+    <div class="field">
+      <label for="password">Passwort</label>
+      <input id="password" name="password" type="password"
+             autocomplete="current-password" placeholder="••••••••" required>
+    </div>
+    <div class="row">
+      <label><input type="checkbox" id="remember" checked> Angemeldet bleiben</label>
+      <a href="#reset" id="forgot">Passwort vergessen?</a>
+    </div>
+    <button type="submit" id="submitBtn">Anmelden</button>
+    <div class="err" id="err"></div>
+  </form>
+
+  <div class="switch">Noch kein Konto? <a href="#registrieren" id="toRegister">Konto erstellen</a></div>
+  <div class="foot">Geschützt durch Nordvale Identity</div>
+</main>
+
+<main class="card" id="registerView">
+  <div class="brand">
+    <div class="mark">N</div>
+    <div class="brand-name">Nordvale</div>
+  </div>
+  <h1>Konto erstellen</h1>
+  <p class="sub">Ein Konto, alle Projekte. Anmeldedaten werden serverseitig gespeichert.</p>
+
+  <form id="registerForm" novalidate>
+    <div class="field">
+      <label for="regEmail">E-Mail</label>
+      <input id="regEmail" name="email" type="email" autocomplete="username"
+             placeholder="name@firma.de" required>
+    </div>
+    <div class="field">
+      <label for="regPassword">Passwort</label>
+      <input id="regPassword" name="password" type="password"
+             autocomplete="new-password" placeholder="mindestens 10 Zeichen" required>
+    </div>
+    <div class="field">
+      <label for="regConfirm">Passwort wiederholen</label>
+      <input id="regConfirm" name="confirm" type="password"
+             autocomplete="new-password" placeholder="••••••••" required>
+    </div>
+    <button type="submit" id="registerBtn">Konto erstellen</button>
+    <div class="err" id="regErr"></div>
+  </form>
+
+  <div class="switch">Bereits registriert? <a href="#login" id="toLogin">Anmelden</a></div>
+  <div class="foot">Geschützt durch Nordvale Identity</div>
+</main>
+
+<main class="card" id="dashView">
+  <div class="brand">
+    <div class="mark">N</div>
+    <div class="brand-name">Nordvale</div>
+  </div>
+  <h1>Dein Konto</h1>
+  <p class="sub">Angemeldet als <span id="dashEmail" class="mono">—</span></p>
+  <dl class="facts">
+    <dt>Konto-ID</dt><dd id="dashId" class="mono">—</dd>
+    <dt>Erstellt</dt><dd id="dashCreated" class="mono">—</dd>
+    <dt>Letzte Anmeldung</dt><dd id="dashLast" class="mono">—</dd>
+  </dl>
+  <button class="btn wide" id="logoutBtn">Abmelden</button>
+  <div class="foot">Geschützt durch Nordvale Identity</div>
+</main>
+
+<section id="panelView">
+  <div id="gateBox" class="gate">
+    <h2>Panel-Zugang</h2>
+    <p>Schlüssel eingeben.</p>
+    <input id="gateKey" type="password" placeholder="Schlüssel">
+    <button class="btn wide" id="gateBtn">Öffnen</button>
+    <div class="err" id="gateErr">Falscher Schlüssel.</div>
+  </div>
+
+  <div id="panelBody">
+    <div class="phead">
+      <h2>Captures</h2>
+      <span class="pill" id="countPill">0 Einträge</span>
+      <span class="pill">server</span>
+      <span class="spacer"></span>
+      <button class="btn" id="refreshBtn">Aktualisieren</button>
+      <button class="btn" id="exportBtn">JSON exportieren</button>
+      <button class="btn" id="csvBtn">CSV</button>
+      <button class="btn danger" id="clearBtn">Leeren</button>
+    </div>
+    <div id="tableWrap"></div>
+  </div>
+</section>
+
+<script src="/app.js"></script>
+</body>
+</html>
