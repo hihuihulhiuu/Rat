@@ -1,9 +1,0 @@
-__pycache__/
-*.pyc
-nordvale.sqlite3
-nordvale.sqlite3-wal
-nordvale.sqlite3-shm
-data/
-.env
-.venv/
-venv/
