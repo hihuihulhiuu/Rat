@@ -4,6 +4,9 @@ services:
     runtime: docker
     plan: free
     autoDeploy: true
+    # Dockerfile and code must be at the repo root. If they live in a subfolder,
+    # set rootDir to that folder (e.g. rootDir: login-portal).
+    dockerfilePath: ./Dockerfile
     healthCheckPath: /api/health
     envVars:
       - key: NV_PANEL_KEY
