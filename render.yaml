@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: nordvale-identity
+    name: nordvale-identity-2
     runtime: docker
     plan: free
     autoDeploy: true
