@@ -1,0 +1,10 @@
+.git
+.gitignore
+__pycache__
+*.pyc
+nordvale.sqlite3
+nordvale.sqlite3-wal
+nordvale.sqlite3-shm
+data
+start.bat
+README.md
