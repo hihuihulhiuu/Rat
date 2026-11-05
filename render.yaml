@@ -14,9 +14,8 @@ services:
         value: "1"
       - key: NV_GEO
         value: "1"
+      # Free tier: no persistent disk. DB lives in the container and resets on
+      # every deploy/restart. For durable storage use a paid instance with a
+      # disk (/data) or an external database.
       - key: NV_DB
         value: /data/nordvale.sqlite3
-    disk:
-      name: data
-      mountPath: /data
-      sizeGB: 1
