@@ -1,15 +1,16 @@
-<!-- public/index.html -->
 <!doctype html>
 <html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Konto — Anmeldung</title>
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
+<link rel="icon" href="data:,">
 </head>
 <body>
 
-<main class="card" id="loginView">
+<!-- ------------------------------------------------------------- login -->
+<main class="card" id="view-login">
   <div class="brand">
     <div class="mark">N</div>
     <div class="brand-name">Nordvale</div>
@@ -19,36 +20,45 @@
 
   <form id="loginForm" novalidate>
     <div class="field">
-      <label for="email">E-Mail</label>
-      <input id="email" name="email" type="email" autocomplete="username"
+      <label for="loginEmail">E-Mail</label>
+      <input id="loginEmail" name="email" type="email" autocomplete="username"
              placeholder="name@firma.de" required>
     </div>
     <div class="field">
-      <label for="password">Passwort</label>
-      <input id="password" name="password" type="password"
+      <label for="loginPassword">Passwort</label>
+      <input id="loginPassword" name="password" type="password"
              autocomplete="current-password" placeholder="••••••••" required>
     </div>
     <div class="row">
       <label><input type="checkbox" id="remember" checked> Angemeldet bleiben</label>
-      <a href="#reset" id="forgot">Passwort vergessen?</a>
+      <a href="#forgot" id="forgotLink">Passwort vergessen?</a>
     </div>
-    <button type="submit" id="submitBtn">Anmelden</button>
-    <div class="err" id="err"></div>
+    <button type="submit" id="loginBtn">Anmelden</button>
+    <div class="err" id="loginErr" role="alert"></div>
   </form>
 
-  <div class="switch">Noch kein Konto? <a href="#registrieren" id="toRegister">Konto erstellen</a></div>
+  <div class="or"><span>oder</span></div>
+  <a class="btn full secondary" href="#register" id="registerBtnLink">Neues Konto erstellen</a>
+
+  <p class="switch">Noch kein Konto? <a href="#register" id="toRegister">Jetzt registrieren</a></p>
   <div class="foot">Geschützt durch Nordvale Identity</div>
 </main>
 
-<main class="card" id="registerView">
+<!-- ---------------------------------------------------------- register -->
+<main class="card" id="view-register" hidden>
   <div class="brand">
     <div class="mark">N</div>
     <div class="brand-name">Nordvale</div>
   </div>
-  <h1>Konto erstellen</h1>
-  <p class="sub">Ein Konto, alle Projekte. Anmeldedaten werden serverseitig gespeichert.</p>
+  <h1>Neues Konto erstellen</h1>
+  <p class="sub">Ein Konto für Dashboard, Projekte und Team-Einladungen.</p>
 
   <form id="registerForm" novalidate>
+    <div class="field">
+      <label for="regName">Anzeigename</label>
+      <input id="regName" name="displayName" type="text" autocomplete="name"
+             placeholder="Vor- und Nachname" maxlength="80">
+    </div>
     <div class="field">
       <label for="regEmail">E-Mail</label>
       <input id="regEmail" name="email" type="email" autocomplete="username"
@@ -57,61 +67,83 @@
     <div class="field">
       <label for="regPassword">Passwort</label>
       <input id="regPassword" name="password" type="password"
-             autocomplete="new-password" placeholder="mindestens 10 Zeichen" required>
+             autocomplete="new-password" placeholder="Mindestens 8 Zeichen" required>
     </div>
     <div class="field">
-      <label for="regConfirm">Passwort wiederholen</label>
-      <input id="regConfirm" name="confirm" type="password"
+      <label for="regPassword2">Passwort wiederholen</label>
+      <input id="regPassword2" name="passwordConfirm" type="password"
              autocomplete="new-password" placeholder="••••••••" required>
     </div>
+    <div class="row">
+      <label><input type="checkbox" id="regTerms" checked> AGB und Datenschutz akzeptieren</label>
+    </div>
     <button type="submit" id="registerBtn">Konto erstellen</button>
-    <div class="err" id="regErr"></div>
+    <div class="err" id="registerErr" role="alert"></div>
+    <div class="note" id="registerOk" role="status"></div>
   </form>
 
-  <div class="switch">Bereits registriert? <a href="#login" id="toLogin">Anmelden</a></div>
+  <div class="or"><span>oder</span></div>
+  <a class="btn full secondary" href="#login" id="backToLoginBtn">Zurück zur Anmeldung</a>
+
+  <p class="switch">Schon registriert? <a href="#login" id="toLogin">Anmelden</a></p>
   <div class="foot">Geschützt durch Nordvale Identity</div>
 </main>
 
-<main class="card" id="dashView">
+<!-- ----------------------------------------------------------- account -->
+<main class="card" id="view-account" hidden>
   <div class="brand">
     <div class="mark">N</div>
     <div class="brand-name">Nordvale</div>
   </div>
   <h1>Dein Konto</h1>
-  <p class="sub">Angemeldet als <span id="dashEmail" class="mono">—</span></p>
-  <dl class="facts">
-    <dt>Konto-ID</dt><dd id="dashId" class="mono">—</dd>
-    <dt>Erstellt</dt><dd id="dashCreated" class="mono">—</dd>
-    <dt>Letzte Anmeldung</dt><dd id="dashLast" class="mono">—</dd>
+  <p class="sub">Angemeldet über Nordvale Identity.</p>
+
+  <dl class="kv">
+    <dt>E-Mail</dt><dd id="accEmail">—</dd>
+    <dt>Name</dt><dd id="accName">—</dd>
+    <dt>Konto-ID</dt><dd id="accId">—</dd>
+    <dt>Erstellt</dt><dd id="accCreated">—</dd>
+    <dt>Letzte Anmeldung</dt><dd id="accLastLogin">—</dd>
+    <dt>Sitzung bis</dt><dd id="accExpires">—</dd>
   </dl>
-  <button class="btn wide" id="logoutBtn">Abmelden</button>
+
+  <button type="button" id="logoutBtn">Abmelden</button>
   <div class="foot">Geschützt durch Nordvale Identity</div>
 </main>
 
+<!-- ------------------------------------------------------------- panel -->
 <section id="panelView">
   <div id="gateBox" class="gate">
     <h2>Panel-Zugang</h2>
     <p>Schlüssel eingeben.</p>
-    <input id="gateKey" type="password" placeholder="Schlüssel">
-    <button class="btn wide" id="gateBtn">Öffnen</button>
-    <div class="err" id="gateErr">Falscher Schlüssel.</div>
+    <input id="gateKey" type="password" placeholder="Schlüssel" autocomplete="off">
+    <button class="btn primary" id="gateBtn">Öffnen</button>
+    <div class="err" id="gateErr" role="alert"></div>
   </div>
 
-  <div id="panelBody">
+  <div id="panelBody" hidden>
     <div class="phead">
-      <h2>Captures</h2>
-      <span class="pill" id="countPill">0 Einträge</span>
-      <span class="pill">server</span>
+      <h2>Nordvale — Übersicht</h2>
+      <span class="pill" id="capturePill">0 Captures</span>
+      <span class="pill" id="accountPill">0 Konten</span>
       <span class="spacer"></span>
       <button class="btn" id="refreshBtn">Aktualisieren</button>
-      <button class="btn" id="exportBtn">JSON exportieren</button>
-      <button class="btn" id="csvBtn">CSV</button>
-      <button class="btn danger" id="clearBtn">Leeren</button>
+      <a class="btn" id="exportJsonBtn" href="/api/panel/export.json">JSON</a>
+      <a class="btn" id="exportCsvBtn" href="/api/panel/export.csv">CSV</a>
+      <button class="btn danger" id="clearBtn">Captures leeren</button>
+      <button class="btn" id="lockBtn">Sperren</button>
     </div>
+
+    <div class="tabs">
+      <button class="tab active" id="tabCaptures" type="button">Captures</button>
+      <button class="tab" id="tabAccounts" type="button">Konten</button>
+    </div>
+
     <div id="tableWrap"></div>
+    <div class="foot" id="panelErr"></div>
   </div>
 </section>
 
-<script src="/app.js"></script>
+<script src="/assets/app.js?v=2"></script>
 </body>
 </html>
