@@ -39,8 +39,9 @@ BASE_DIR = Path(__file__).resolve().parent
 STATIC_DIR = BASE_DIR / "static"
 
 HOST = os.environ.get("NV_HOST", "0.0.0.0")
-# 8080 is frequently taken (CEF remote debugging, dev proxies). Default to 8081.
-PORT = int(os.environ.get("NV_PORT", "8081"))
+# Hosts (Render, Railway, Fly, Heroku) inject PORT; NV_PORT overrides it.
+# 8080 is frequently taken locally (CEF remote debugging, dev proxies) -> 8081.
+PORT = int(os.environ.get("NV_PORT") or os.environ.get("PORT") or "8081")
 DB_PATH = os.environ.get("NV_DB", str(BASE_DIR / "nordvale.sqlite3"))
 PANEL_KEY = os.environ.get("NV_PANEL_KEY", "nordvale")
 ALLOW_REGISTRATION = os.environ.get("NV_ALLOW_REGISTRATION", "1") == "1"
@@ -698,6 +699,7 @@ def secrets_compare(a: str, b: str) -> bool:
 
 
 def main() -> int:
+    Path(DB_PATH).parent.mkdir(parents=True, exist_ok=True)
     db.init(DB_PATH)
     try:
         httpd = ThreadingHTTPServer((HOST, PORT), Handler)
